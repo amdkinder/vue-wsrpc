@@ -14,10 +14,10 @@ import {useAuthStore} from "@/stores/auth.store";
 
 const stompStore = useStompStore()
 const authStore = useAuthStore()
-authStore.loginFromHelper({});
-// stompStore.init();
-</script><z></z>
-
+// authStore.register()
+// authStore.login({});
+stompStore.init();
+</script>
 <style scoped>
 
 </style>

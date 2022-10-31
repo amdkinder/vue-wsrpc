@@ -18,6 +18,17 @@ export const useAuthStore = defineStore('auth', () => {
         "code": '646067',
     }
     const url = 'https://auth.hamyon.uz/auth/realms/hamyon-business/protocol/openid-connect/token'
+    const registerUri = 'https://auth.hamyon.uz/auth/realms/hamyon-business/sms/register-user'
+
+    const registerConfig = {
+        "firstName": "Axrorbek",
+        "lastName": "Kuchkarov",
+        "username": "998950013363",
+        "platform": "IPHONE",
+        "deviceId": "AAAAAdevice",
+        "name": "Iphone 11",
+        "password": "1237654.Hp"
+    }
 
     const login = (payload: any) => {
         payload = {...config, ...payload}
@@ -44,6 +55,11 @@ export const useAuthStore = defineStore('auth', () => {
         })
     }
 
+    const register = () => {
+        axios.post<any>(registerUri, registerConfig)
+            .then(res => console.log(res.data))
+    }
 
-    return {login, token, loginFromHelper}
+
+    return {login, token, loginFromHelper, register}
 })

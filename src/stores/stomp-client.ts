@@ -2,6 +2,7 @@ import {defineStore} from "pinia";
 import SockJS from 'sockjs-client/dist/sockjs';
 
 import {Stomp} from "@stomp/stompjs";
+import {useAuthStore} from "@/stores/auth.store";
 
 export const useStompStore = defineStore('stomp', () => {
     var global = window;
@@ -12,8 +13,9 @@ export const useStompStore = defineStore('stomp', () => {
     const init = () => {
         const sockjs = new SockJS(baseUri)
         stompClient = Stomp.over(sockjs)
-        const headers = {}
+        const headers = {'Authorization': localStorage.getItem('token')}
         stompClient.connect(headers, () => {
+            console.log("connected")
             subscribe()
             send(request)
         })
